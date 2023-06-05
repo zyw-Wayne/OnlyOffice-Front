@@ -1,0 +1,110 @@
+<!--
+ * @Author: zyw_Wayne
+ * @Date: 2022-07-19 17:40:20
+ * @LastEditTime: 2023-06-05 15:31:17
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      body {
+        height: 100vh;
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="placeholder"></div>
+    <script
+      type="text/javascript"
+      src="http://192.168.100.211:50888/web-apps/apps/api/documents/api.js"
+    ></script>
+    <script>
+      var onRequestHistory = function () {
+        docEditor.refreshHistory({
+          currentVersion: 1,
+          history: [],
+        });
+      };
+
+      var onDocumentStateChange = function (event) {
+        if (event.data) {
+          console.log("The document changed");
+        } else {
+          console.log("Changes are collected on document editing service");
+        }
+      };
+
+      var onDownloadAs = function (event) {
+        var fileType = event.data.fileType;
+        var url = event.data.url;
+        console.log("ONLYOFFICE Document Editor create file: " + url);
+      };
+
+      var docEditor = new DocsAPI.DocEditor("placeholder", {
+        document: {
+          // fileType: "pdf",
+          key: "498ebbb735a17f75d89dafc1efd4b558",
+          permissions: {
+            edit: true,
+          },
+          info: {
+            owner: "王二",
+          },
+          title: "测试文档",
+          url: "http://192.168.100.211:8080/group1/mine/graphic/c1/图文报告-公共文档-7/发票222.docx",
+        },
+        documentType: "word",
+        editorConfig: {
+          lang: "zh",
+          location: "",
+          mode: "edit",
+          region: "zh-CN",
+          callbackUrl:
+            "http://192.168.100.211:8085/api/cloud/graphic/file/redeposit?file_id=57&history_id=86",
+          user: {
+            name: "王二",
+          },
+        },
+        events: {
+          // onAppReady: onAppReady,
+          // onCollaborativeChanges: onCollaborativeChanges,
+          // onDocumentReady: onDocumentReady,
+          // onDocumentStateChange: onDocumentStateChange,
+          onDownloadAs: onDownloadAs,
+          // onError: onError,
+          // onInfo: onInfo,
+          // onMetaChange: onMetaChange,
+          // onOutdatedVersion: onOutdatedVersion,
+          // onPluginsReady: onPluginsReady,
+          // onRequestClose: onRequestClose,
+          // onRequestCompareFile: onRequestCompareFile,
+          // onRequestCreateNew: onRequestCreateNew,
+          // onRequestEditRights: onRequestEditRights,
+          // onRequestHistory: onRequestHistory,
+          // onRequestHistoryClose: onRequestHistoryClose,
+          // onRequestHistoryData: onRequestHistoryData,
+          // onRequestInsertImage: onRequestInsertImage,
+          // onRequestMailMergeRecipients: onRequestMailMergeRecipients,
+          // onRequestRename: onRequestRename,
+          // onRequestRestore: onRequestRestore,
+          // onRequestSaveAs: onRequestSaveAs,
+          // onRequestSendNotify: onRequestSendNotify,
+          // onRequestSharingSettings: onRequestSaveAs,
+          // onRequestUsers: onRequestUsers,
+          // onWarning: onWarning,
+        },
+        height: "100%",
+        width: "100%",
+      });
+    </script>
+  </body>
+</html>
+
+<!-- word md5 -->
+<!-- 2a153f548ec64f49ba441e7721a15ab1 -->
+<!-- 微软雅黑 -->
+<!-- ada17328bf9c36ea93fab6b38520a2d6 -->

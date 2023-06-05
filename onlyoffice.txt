@@ -1,0 +1,278 @@
+            // onAppReady: onAppReady,
+          // onCollaborativeChanges: onCollaborativeChanges,
+          // onDocumentReady: onDocumentReady,
+          // onDocumentStateChange: onDocumentStateChange,
+          // onDownloadAs: onDownloadAs,
+          // onError: onError,
+          // onInfo: onInfo,
+          // onMetaChange: onMetaChange,
+          // onOutdatedVersion: onOutdatedVersion,
+          // onPluginsReady: onPluginsReady,
+          // onRequestClose: onRequestClose,
+          // onRequestCompareFile: onRequestCompareFile,
+          // onRequestCreateNew: onRequestCreateNew,
+          // onRequestEditRights: onRequestEditRights,
+          // onRequestHistory: onRequestHistory,
+          // onRequestHistoryClose: onRequestHistoryClose,
+          // onRequestHistoryData: onRequestHistoryData,
+          // onRequestInsertImage: onRequestInsertImage,
+          // onRequestMailMergeRecipients: onRequestMailMergeRecipients,
+          // onRequestRename: onRequestRename,
+          // onRequestRestore: onRequestRestore,
+          // onRequestSaveAs: onRequestSaveAs,
+          // onRequestSendNotify: onRequestSendNotify,
+          // onRequestSharingSettings: onRequestSaveAs,
+          // onRequestUsers: onRequestUsers,
+          // onWarning: onWarning,
+  
+     var onRequestHistory = function () {
+        docEditor.refreshHistory({
+          currentVersion: 1,
+          history: [],
+        });
+      };
+
+      var onAppReady = function () {
+        // alert("ONLYOFFICE Document Editor is ready");
+        console.log("ONLYOFFICE Document Editor is ready");
+      };
+
+      var onCollaborativeChanges = function () {
+        console.log("The document changed by collaborative user");
+      };
+
+      var onDocumentReady = function () {
+        console.log("Document is loaded");
+      };
+
+      var onDownloadAs = function (event) {
+        var fileType = event.data.fileType;
+        var url = event.data.url;
+        console.log("ONLYOFFICE Document Editor create file: " + url);
+      };
+
+      var onInfo = function (event) {
+        console.log(
+          "ONLYOFFICE Document Editor is opened in mode " + event.data.mode
+        );
+      };
+
+      var onError = function (event) {
+        console.log(
+          "ONLYOFFICE Document Editor reports an error: code " +
+            event.data.errorCode +
+            ", description " +
+            event.data.errorDescription
+        );
+      };
+
+      var onMetaChange = function (event) {
+        var title = event.data.title;
+        var favorite = event.data.favorite;
+      };
+
+      var onMakeActionLink = function (event) {
+        var ACTION_DATA = event.data;
+        var link = GENERATE_LINK(ACTION_DATA);
+        docEditor.setActionLink(link);
+      };
+
+      var onPluginsReady = function () {};
+
+      var onRequestClose = function () {
+        alert("ONLYOFFICE Document Editor is ready");
+        if (window.opener) {
+          alert("ONLYOFFICE Document Editor is ready");
+
+          window.close();
+          return;
+        }
+        alert("ONLYOFFICE Document Editor is ready");
+        docEditor.destroyEditor();
+      };
+
+      var onRequestCompareFile = function () {
+        docEditor.setRevisedFile({
+          fileType: "docx",
+          url: "https://example.com/url-to-example-document.docx",
+        });
+      };
+
+      var onRequestCreateNew = function () {};
+
+      var onRequestEditRights = function () {
+        console.log("ONLYOFFICE Document Editor requests editing rights");
+        document.location.reload();
+      };
+
+      var onRequestHistory = function () {
+        docEditor.refreshHistory({
+          currentVersion: 2,
+          history: [
+            {
+              changes: changes,
+              created: "2010-07-06 10:13 AM",
+              key: "af86C7e71Ca8",
+              serverVersion: serverVersion,
+              user: {
+                id: "F89d8069ba2b",
+                name: "Kate Cage",
+              },
+              version: 1,
+            },
+            {
+              changes: changes,
+              created: "2010-07-07 3:46 PM",
+              key: "Khirz6zTPdfd7",
+              user: {
+                id: "78e1e841",
+                name: "John Smith",
+              },
+              version: 2,
+            },
+          ],
+        });
+      };
+
+      var onRequestHistoryData = function (event) {
+        var version = event.data;
+        docEditor.setHistoryData({
+          changesUrl: "https://example.com/url-to-changes.zip",
+          fileType: "docx",
+          key: "Khirz6zTPdfd7",
+          previous: {
+            fileType: "docx",
+            key: "af86C7e71Ca8",
+            url: "https://example.com/url-to-the-previous-version-of-the-document.docx",
+          },
+          url: "https://example.com/url-to-example-document.docx",
+          version: version,
+        });
+      };
+
+      var onRequestInsertImage = function (event) {
+        docEditor.insertImage({
+          c: event.data.c,
+          images: [
+            {
+              fileType: "png",
+              url: "https://example.com/url-to-example-image1.png",
+            },
+            {
+              fileType: "png",
+              url: "https://example.com/url-to-example-image2.png",
+            },
+          ],
+        });
+      };
+
+      var onRequestMailMergeRecipients = function () {
+        docEditor.setMailMergeRecipients({
+          fileType: "xlsx",
+          url: "https://example.com/url-to-example-recipients.xlsx",
+        });
+      };
+
+      var onRequestRename = function (event) {
+        var title = event.data;
+      };
+
+      var onRequestHistoryClose = function () {
+        document.location.reload();
+      };
+
+      var onRequestRestore = function (event) {
+        var fileType = event.data.fileType;
+        var url = event.data.url;
+        var version = event.data.version;
+        docEditor.refreshHistory({
+          currentVersion: 2,
+          history: [
+            {
+              changes: changes,
+              created: "2010-07-06 10:13 AM",
+              key: "af86C7e71Ca8",
+              serverVersion: serverVersion,
+              user: {
+                id: "F89d8069ba2b",
+                name: "Kate Cage",
+              },
+              version: 1,
+            },
+            {
+              changes: changes,
+              created: "2010-07-07 3:46 PM",
+              key: "Khirz6zTPdfd7",
+              user: {
+                id: "78e1e841",
+                name: "John Smith",
+              },
+              version: 2,
+            },
+          ],
+        });
+      };
+
+      var onRequestSaveAs = function (event) {
+        var fileType = event.data.fileType;
+        var title = event.data.title;
+        var url = event.data.url;
+      };
+
+      var onRequestSendNotify = function (event) {
+        var ACTION_DATA = event.data.actionLink;
+        var comment = event.data.message;
+        var emails = event.data.emails;
+      };
+
+      var onRequestSharingSettings = function () {
+        docEditor.setSharingSettings({
+          sharingSettings: [
+            {
+              permissions: "Full Access",
+              user: "John Smith",
+            },
+            {
+              isLink: true,
+              permissions: "Read Only",
+              user: "External link",
+            },
+          ],
+        });
+      };
+
+      var onRequestUsers = function () {
+        docEditor.setUsers({
+          users: [
+            {
+              email: "john@example.com",
+              name: "John Smith",
+            },
+            {
+              email: "kate@example.com",
+              name: "Kate Cage",
+            },
+          ],
+        });
+      };
+
+      var onWarning = function (event) {
+        console.log(
+          "ONLYOFFICE Document Editor reports a warning: code " +
+            event.data.warningCode +
+            ", description " +
+            event.data.warningDescription
+        );
+      };
+
+      var onDocumentStateChange = function (event) {
+        if (event.data) {
+          console.log("The document changed");
+        } else {
+          console.log("Changes are collected on document editing service");
+        }
+      };
+
+      var onOutdatedVersion = function () {
+        location.reload(true);
+      };
